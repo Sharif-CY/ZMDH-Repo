@@ -25,6 +25,10 @@
     padding: 50px 30px;
 }
 
+#k-section-1 .container p{
+    font-size:15px;
+}
+
 #k-section-1 a {
     background-color: #0055A2;
     color:white;
@@ -42,6 +46,9 @@
     padding: 0 30px;
 }
 
+#k-section-1 ul li{
+    font-size:15px;
+}
 .grey-line{
     height:2px;
     width:100%;
