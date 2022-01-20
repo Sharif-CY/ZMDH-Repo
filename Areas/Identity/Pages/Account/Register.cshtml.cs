@@ -24,6 +24,7 @@ namespace WDPR.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
+
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
@@ -36,6 +37,8 @@ namespace WDPR.Areas.Identity.Pages.Account
             _emailSender = emailSender;
         }
 
+
+
         [BindProperty]
         public InputModel Input { get; set; }
 
@@ -45,6 +48,12 @@ namespace WDPR.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+
+            [Required]
+            [Display(Name = "Wat bent u")]
+            [RegularExpression(@"^Hulpverlener|Moderator|Client|Ouder")]
+            public string Role { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -78,6 +87,18 @@ namespace WDPR.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+                     if(Input.Role == "Hulpverlener")
+                    _userManager.AddToRoleAsync(user,"Hulpverlener").Wait();
+                }
+
+                 if(Input.Role=="Moderator"){
+                    _userManager.AddToRoleAsync(user,"Moderator").Wait();
+                 }
+                  if(Input.Role=="Client"){
+                    _userManager.AddToRoleAsync(user,"Client").Wait();
+                  }
+                   if(Input.Role=="Ouder"){
+                    _userManager.AddToRoleAsync(user,"Ouder").Wait();
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
