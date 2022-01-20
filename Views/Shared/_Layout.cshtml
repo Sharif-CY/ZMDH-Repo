@@ -6,13 +6,15 @@
     <title>@ViewData["Title"] - WDPR</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/home.css" />
+
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="container">
                 <ul>
-                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a class="first-link" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-controller="Orthopedagogen" asp-action="Index">Orthopedagogen</a></li>
                     <li><a asp-controller="KlachtenProcedure" asp-action="Index">Klachten-procedure</a></li>
                     <li><a asp-controller="Aanmelden" asp-action="Index">Aanmelden</a></li>
