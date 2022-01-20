@@ -1,3 +1,7 @@
+p{
+    font-size: 15px;
+}
+
 #section-1{
     padding:50px 0;
 }
@@ -37,9 +41,6 @@
     font-size:25px;
 }
 
-#section-2 p{
-    font-size:15px;
-}
 
 #section-2 a{
     background-color: #0055A2;
@@ -49,3 +50,77 @@
     padding: 8px 20px;
     margin-right: auto;
 }
+
+#section-3{
+    padding: 50px 30px;
+    
+}
+
+#section-3 h2{
+    margin-bottom:15px;
+    color:#0055A2;
+    font-size:25px;
+}
+
+.s3-group{
+    display: flex;
+    justify-content: space-between;
+}
+
+.s3-group .box{
+    width:45%;
+    background-color: #0055A2;
+    padding: 10px 30px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 20px #0000000d;
+}
+
+.box{
+    color:white;
+}
+
+.box p{
+    font-size:14px;
+}
+ 
+.box h3{
+    text-align: center;
+    font-size:25px;
+    margin-bottom:15px;
+}
+
+.wide-box{
+    margin-top:50px;
+    background-color: #0055A2;
+    padding: 20px 50px;
+    border-radius: 10px;    
+    box-shadow: 3px 3px 20px #0000000d;
+}
+
+.wide-box-group{
+    margin-top:30px;
+    display: flex;
+}
+
+.wide-box h3{
+    color:white;
+    text-align: center;
+}
+
+ .box-p h4{
+    color:#FF4A88;
+    text-align: center;
+    font-size:18px;
+ }
+
+ .box-p{
+     padding:10px;
+     width:33%;
+ }
+
+ .box-p p{
+     font-size: 14px;
+     color:white;
+     text-align: center;
+ }
+
