@@ -1,0 +1,81 @@
+@model WDPR.Models.Hulpverlener
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Hulpverlener</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="VoorNaam" class="control-label"></label>
+                <input asp-for="VoorNaam" class="form-control" />
+                <span asp-validation-for="VoorNaam" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Hulpverlenerid" />
+            <div class="form-group">
+                <label asp-for="achterNaam" class="control-label"></label>
+                <input asp-for="achterNaam" class="form-control" />
+                <span asp-validation-for="achterNaam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Specialisme" class="control-label"></label>
+                <input asp-for="Specialisme" class="form-control" />
+                <span asp-validation-for="Specialisme" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gebruikersnaam" class="control-label"></label>
+                <input asp-for="Gebruikersnaam" class="form-control" />
+                <span asp-validation-for="Gebruikersnaam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefoonnummer" class="control-label"></label>
+                <input asp-for="Telefoonnummer" class="form-control" />
+                <span asp-validation-for="Telefoonnummer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProfielFoto" class="control-label"></label>
+                <input asp-for="ProfielFoto" class="form-control" />
+                <span asp-validation-for="ProfielFoto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WiebenIk" class="control-label"></label>
+                <input asp-for="WiebenIk" class="form-control" />
+                <span asp-validation-for="WiebenIk" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MijnSTudie" class="control-label"></label>
+                <input asp-for="MijnSTudie" class="form-control" />
+                <span asp-validation-for="MijnSTudie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WatAls" class="control-label"></label>
+                <input asp-for="WatAls" class="form-control" />
+                <span asp-validation-for="WatAls" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoeHelpen" class="control-label"></label>
+                <input asp-for="HoeHelpen" class="form-control" />
+                <span asp-validation-for="HoeHelpen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
