@@ -69,3 +69,27 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+
+.navbar{
+  height:80px;
+  background-color: #0055A2;
+  border-bottom: 8px solid #FF4A88;
+  color:white;
+}
+
+.navbar ul{
+  list-style-type: none;
+  display: flex;
+  margin:0;
+  margin-left:auto;
+  padding:0;
+}
+
+.navbar ul li{
+  margin-left:20px;
+}
+
+.navbar ul li a{
+  color:white;
+}
