@@ -6,14 +6,19 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using WDPR.Hubs;
+
 
 namespace WDPR
 {
     public class Program
     {
+        
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            
+            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -21,6 +26,9 @@ namespace WDPR
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    
                 });
+
+                
     }
 }
