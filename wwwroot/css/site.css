@@ -73,7 +73,6 @@ body {
 
 
 .navbar{
-  height:80px;
   background-color: #0055A2;
   border-bottom: 8px solid #FF4A88;
   color:white;
@@ -94,3 +93,6 @@ body {
 .navbar ul li a{
   color:white;
 }
+
+
+
