@@ -3,21 +3,33 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WDPR</title>
+    <title>@ViewData["Title"] - ZMDH</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/home.css" />
+    <link rel="stylesheet" href="~/css/klacht.css" />
+    <link rel="stylesheet" href="~/css/aanmelden.css" />
+    <link rel="stylesheet" href="~/css/inloggen.css" />
+    <link rel="stylesheet" href="~/css/ortho.css" />
+
+
+
+
 
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="container">
+                <a asp-controller="Home" asp-action="Index">
+                    <img src="/Images/logo.png" alt="ZMDH-logo" width="60" height="60">
+                </a>
+
                 <ul>
-                    <li><a class="first-link" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-controller="Orthopedagogen" asp-action="Index">Orthopedagogen</a></li>
-                    <li><a asp-controller="KlachtenProcedure" asp-action="Index">Klachten-procedure</a></li>
-                    <li><a asp-controller="Aanmelden" asp-action="Index">Aanmelden</a></li>
+                    <li><a class="home-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a class="ortho-link" asp-controller="Orthopedagogen" asp-action="Index">Orthopedagogen</a></li>
+                    <li><a class="klacht-link" asp-controller="KlachtenProcedure" asp-action="Index">Klachten-procedure</a></li>
+                    <li><a class="aanmelden-link" asp-controller="Aanmelden" asp-action="Index">Aanmelden</a></li>
                     <partial name="_LoginPartial"/>
                 </ul>
                 

@@ -2,6 +2,43 @@
     ViewData["Title"] = "KlachtenProcedure";
 }
 
-<div class="container">
+<style>
+.klacht-link
+{
+    color:#FF4A88 !important;
+    font-weight: bold;
+}
+</style>
+
+<div id=k-section-1>
     <h1>KlachtenProcedure</h1>
+    <div class="container">
+        <p>De medewerkers en behandelaren van Zorg Maatschap Den haag doen dagelijks hun uiterste best om u of uw kind op een gepaste manier hulp te verlenen.
+             Het kan helaas wel is gebeuren dat er u niet tevreden bent over een behandelaar of de manier waarop wij u zorg verlenen. Indien daar 
+             klachten over zijn horen wij dat graag van u zodat wij samen tot een geschikte oplossing kunnen komen.
+             Wij horen graag van u zodat we de kwaliteit van onze zorg kunnen verbeteren.
+        </p>
+
+    <a asp-controller="Aanmelden" asp-action="Index" >Formulier invullen</a>
+
+    <div class="grey-line"></div>
+
+    <h2>Wie kan een klacht indienen?</h2>
+    <ul>
+        <li>Een cliënt  zelf</li>
+        <li>Ouders of voogd indien de cliënt  minderjarig is</li>
+        <li>Individueel die door de cliënt  gemachtigd is</li>
+        <li>Nabestaanden</li>
+    </ul>
+
+    <div class="grey-line"></div>
+
+    <p>
+        Als u een klacht heeft of een ander probleem kunt u ons contacteren via het klachten contact formulier. Om de klacht in behandeling te nemen dienen alle velden volledig
+        ingevuld te worden met de juiste informatie. De procedure duurt zeven werkdagen waarna er contact met je wordt opgenomen voor eventuele verdere informatie of een oplossing.
+        Indien we samen niet tot een oplossing kunnen komen en u bent niet tevreden met onze klachtenprocedure dan heeft u nog een mogelijkheid. Mede dankzij de Wet Kwaliteit,
+        klachten en geschillen zorg (wwkz) moeten wij ons aansluiten bij een onafhankelijke klachten en geschillenregeling. Wij hebben ons aangesloten met p3nl.
+    </p>
+
+    </div>
 </div>

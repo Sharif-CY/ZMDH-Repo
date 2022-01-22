@@ -1,7 +1,79 @@
+@model Hulpverlener
 @{
     ViewData["Title"] = "Orthopedagogen";
 }
 
-<div class="container-orthopedagogen">
+<style>
+    .ortho-link
+{
+    color:#FF4A88 !important;
+    font-weight: bold;
+}
+</style>
+
+@*
+
+h1 toevoegen Orthopedagogen met css fixen --- NOT DONE
+ *@
+
+ 
+
+<div id="o-section-1">
     <h1>Orthopedagogen</h1>
+
+    <form asp-action="Index" asp-controller="Orthopedagogen">
+    <label>zoek Orthopedagoog</label>
+    <input asp-for="VoorNaam" placeholder="zoek een orthopedagoog"/>
+    
+    <input type="submit" />
+    <input name="__RequestVerificationToken" type="hidden" value="<token_generated_here>">
+</form>
+
+
+@foreach (var item in ViewBag.Orthopedagogen)
+{
+        <div class="o-card">
+            <div class="card-top">
+                <img src="/Images/Morgan.png" alt="Orthopedagoog @item.VoorNaam">
+                <div class="top-group">
+                    <div class="o-naam">@item.VoorNaam @item.achterNaam</div>
+                    <div class="o-specialisme">Specialisme: @item.Specialisme</div>
+                </div>
+            </div>
+
+            <div class="card-info-group">
+                    
+                    <div class="text-section">
+                        <div class="card-kopje">Wie ben ik?</div>
+                        <div class="card-text">
+                            @item.WiebenIk
+                        </div>
+                    </div>
+                    
+                    <div class="text-section">
+                        <div class="card-kopje">Mijn studie</div>
+                        <div class="card-text">
+                            @item.MijnSTudie
+                        </div>
+                    </div>
+            </div>
+
+            <div class="card-info-group">
+                    
+                    <div class="text-section">
+                        <div class="card-kopje">Wat als je stoornissen/leerproblemen hebt?</div>
+                        <div class="card-text">
+                            @item.WatAls
+                        </div>
+                    </div>
+                    
+                    <div class="text-section">
+                        <div class="card-kopje">Hoe gaan we je helpen?</div>
+                        <div class="card-text">
+                            @item.HoeHelpen
+                        </div>
+                    </div>
+            </div>
+        </div>
+}
 </div>
