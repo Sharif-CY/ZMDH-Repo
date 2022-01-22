@@ -17,7 +17,9 @@ namespace WDPR.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
+
         private readonly UserManager<IdentityUser> _userManager;
+
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
@@ -73,6 +75,7 @@ namespace WDPR.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+
             returnUrl ??= Url.Content("~/");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -85,7 +88,28 @@ namespace WDPR.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+
+                    if (result.Succeeded)
+                    {
+                        // Resolve the user via their email
+                        var user = await _userManager.FindByEmailAsync(Input.Email);
+                        // Get the roles for the user
+                        var roles = await _userManager.GetRolesAsync(user);
+
+
+                        _logger.LogInformation("User logged in.");
+
+                        if (roles.Contains("Hulpverlener"))
+                        {
+                            return Redirect("/hulpverlener/dashboard");
+                        }
+                        else
+                        {
+                            return LocalRedirect(returnUrl);
+                        }
+
+
+                    }
                 }
                 if (result.RequiresTwoFactor)
                 {

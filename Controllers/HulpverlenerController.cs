@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WDPR.Models;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace WDPR.Controllers
 {
@@ -16,6 +18,11 @@ namespace WDPR.Controllers
         public HulpverlenerController(MyContext context)
         {
             _context = context;
+        }
+
+        [Authorize(Roles = "Hulpverlener")]
+        public IActionResult Dashboard(){
+            return View();
         }
 
         // GET: Hulpverlener
