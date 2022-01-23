@@ -1,0 +1,61 @@
+
+.main{
+    padding:50px 0;
+}
+
+.main h1{
+    font-size: 25px;
+    font-weight: bold;
+    color: #0055A2;
+}
+
+.sred-line{
+    height:2px;
+    width:100%;
+    background-color: #FF4A88;
+    margin: 10px 0;
+}
+
+
+.cards-container{
+    padding: 40px 0;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-between;
+}
+
+.cards-container-2{
+    padding: 40px 0;
+    display: grid;
+    grid-template-columns: auto auto !important;
+    justify-content: space-evenly;
+}
+
+.c-title{
+    font-weight: bold;
+    font-size: 20px;
+    color:white;
+    text-align: center;
+}
+
+.c-item{
+    padding:20px 20px;
+    background-color: #0055A2;
+    box-shadow: 3px 3px 20px #0000000d;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:300px;
+}
+
+.c-item img{
+    padding:10px;
+    height: 110px;
+    width:110px;
+    padding:20px;
+}
+
+
+

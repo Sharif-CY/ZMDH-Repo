@@ -24,6 +24,11 @@ namespace WDPR.Controllers
             return View();
         }
 
+        public IActionResult Succes()
+        {
+            return View();
+        }
+
         [Authorize(Roles ="Hulpverlener")]   
         public IActionResult Privacy()
         {
