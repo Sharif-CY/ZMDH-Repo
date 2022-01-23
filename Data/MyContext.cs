@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WDPR.Models;
 
+namespace WDPR.Data {
+
     public class MyContext : IdentityDbContext
     {
         public MyContext (DbContextOptions<MyContext> options)
@@ -13,5 +15,8 @@ using WDPR.Models;
         {
         }
 
+        public DbSet<Room> Rooms { get; set; }
+        public DbSet<Message> Messages { get; set; }
         public DbSet<WDPR.Models.Hulpverlener> Hulpverlener { get; set; }
     }
+}

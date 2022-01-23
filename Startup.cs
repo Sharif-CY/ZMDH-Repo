@@ -10,7 +10,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using AutoMapper;
+using WDPR.Data;
 using WDPR.Hubs;
+using WDPR.Models;
+
 
 namespace WDPR
 {
@@ -34,6 +38,7 @@ namespace WDPR
             .AddEntityFrameworkStores<MyContext>()
             .AddDefaultTokenProviders()
             .AddDefaultUI();
+
             services.AddDbContext<MyContext>(options =>
                     options.UseSqlite(Configuration.GetConnectionString("MyContext")));
         }
