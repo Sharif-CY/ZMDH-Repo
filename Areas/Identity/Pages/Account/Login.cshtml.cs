@@ -103,6 +103,10 @@ namespace WDPR.Areas.Identity.Pages.Account
                         {
                             return Redirect("/hulpverlener/dashboard");
                         }
+                        else if(roles.Contains("Moderator")){
+                            return Redirect("/moderator/dashboard");
+
+                        }
                         else
                         {
                             return LocalRedirect(returnUrl);

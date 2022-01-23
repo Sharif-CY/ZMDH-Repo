@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 
 namespace WDPR.Areas.Identity.Pages.Account
 {
+    // [Authorize(Roles = "Moderator")]
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
@@ -71,11 +72,13 @@ namespace WDPR.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
+       
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
+
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {

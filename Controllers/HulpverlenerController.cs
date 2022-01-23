@@ -21,7 +21,8 @@ namespace WDPR.Controllers
         }
 
         [Authorize(Roles = "Hulpverlener")]
-        public IActionResult Dashboard(){
+        public IActionResult Dashboard()
+        {
             return View();
         }
 
@@ -32,7 +33,7 @@ namespace WDPR.Controllers
         }
 
         // GET: Hulpverlener/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -40,7 +41,7 @@ namespace WDPR.Controllers
             }
 
             var hulpverlener = await _context.Hulpverlener
-                .FirstOrDefaultAsync(m => m.Hulpverlenerid == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (hulpverlener == null)
             {
                 return NotFound();
@@ -60,7 +61,7 @@ namespace WDPR.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("VoorNaam,Hulpverlenerid,achterNaam,Specialisme,Gebruikersnaam,Email,Telefoonnummer,ProfielFoto,WiebenIk,MijnSTudie,WatAls,HoeHelpen")] Hulpverlener hulpverlener)
+        public async Task<IActionResult> Create([Bind("VoorNaam,achterNaam,Specialisme,Gebruikersnaam,Email,Telefoonnummer,ProfielFoto,WiebenIk,MijnSTudie,WatAls,HoeHelpen,Id")] Hulpverlener hulpverlener)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +73,7 @@ namespace WDPR.Controllers
         }
 
         // GET: Hulpverlener/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
@@ -92,9 +93,9 @@ namespace WDPR.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("VoorNaam,Hulpverlenerid,achterNaam,Specialisme,Gebruikersnaam,Email,Telefoonnummer,ProfielFoto,WiebenIk,MijnSTudie,WatAls,HoeHelpen")] Hulpverlener hulpverlener)
+        public async Task<IActionResult> Edit(string id, [Bind("VoorNaam,achterNaam,Specialisme,Gebruikersnaam,Email,Telefoonnummer,ProfielFoto,WiebenIk,MijnSTudie,WatAls,HoeHelpen,Id")] Hulpverlener hulpverlener)
         {
-            if (id != hulpverlener.Hulpverlenerid)
+            if (id != hulpverlener.Id)
             {
                 return NotFound();
             }
@@ -108,7 +109,7 @@ namespace WDPR.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HulpverlenerExists(hulpverlener.Hulpverlenerid))
+                    if (!HulpverlenerExists(hulpverlener.Id))
                     {
                         return NotFound();
                     }
@@ -123,7 +124,7 @@ namespace WDPR.Controllers
         }
 
         // GET: Hulpverlener/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
@@ -131,7 +132,7 @@ namespace WDPR.Controllers
             }
 
             var hulpverlener = await _context.Hulpverlener
-                .FirstOrDefaultAsync(m => m.Hulpverlenerid == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (hulpverlener == null)
             {
                 return NotFound();
@@ -143,7 +144,7 @@ namespace WDPR.Controllers
         // POST: Hulpverlener/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var hulpverlener = await _context.Hulpverlener.FindAsync(id);
             _context.Hulpverlener.Remove(hulpverlener);
@@ -151,9 +152,9 @@ namespace WDPR.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool HulpverlenerExists(int id)
+        private bool HulpverlenerExists(string id)
         {
-            return _context.Hulpverlener.Any(e => e.Hulpverlenerid == id);
+            return _context.Hulpverlener.Any(e => e.Id == id);
         }
     }
 }
