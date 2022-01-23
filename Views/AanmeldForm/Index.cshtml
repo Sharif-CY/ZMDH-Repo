@@ -1,0 +1,68 @@
+@model IEnumerable<WDPR.Models.AanmeldForm>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VoorNaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.achterNaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Geboortedatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aandoening)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orthopedagoog)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VoorNaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.achterNaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Geboortedatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aandoening)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Orthopedagoog)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

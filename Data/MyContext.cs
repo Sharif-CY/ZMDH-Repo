@@ -14,4 +14,6 @@ using WDPR.Models;
         }
 
         public DbSet<WDPR.Models.Hulpverlener> Hulpverlener { get; set; }
+
+        public DbSet<WDPR.Models.AanmeldForm> AanmeldForm { get; set; }
     }
