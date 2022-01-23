@@ -56,7 +56,7 @@ namespace WDPR.Hubs
             }
         }
 
-      /*   public async Task SendToRoom(string roomName, string message)
+         public async Task SendToRoom(string roomName, string message)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace WDPR.Hubs
             {
                 await Clients.Caller.SendAsync("onError", "Message not send! Message should be 1-500 characters.");
             }
-        } */
+        } 
 
         public async Task Join(string roomName)
         {
@@ -144,6 +144,7 @@ namespace WDPR.Hubs
                     var room = new Room()
                     {
                         Naam = roomName,
+                        Admin = user
                         
                     };
                     _context.Rooms.Add(room);

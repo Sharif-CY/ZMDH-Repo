@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using WDPR.Models;
 
 namespace WDPR.Data {
-    public class MyContext : IdentityDbContext
+    public class MyContext : IdentityDbContext<ApplicationUser>
     {
         public MyContext (DbContextOptions<MyContext> options)
             : base(options)
