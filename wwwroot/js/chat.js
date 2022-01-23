@@ -35,7 +35,7 @@
     });
 
     connection.on("addChatRoom", function (room) {
-        viewModel.roomAdded(new ChatRoom(room.id, room.naam));
+        viewModel.roomAdded(new ChatRoom(room.id, room.name));
     });
 
     connection.on("removeChatRoom", function (room) {
@@ -120,7 +120,7 @@
             connection.invoke("GetRooms").then(function (result) {
                 self.chatRooms.removeAll();
                 for (var i = 0; i < result.length; i++) {
-                    self.chatRooms.push(new ChatRoom(result[i].id, result[i].naam));
+                    self.chatRooms.push(new ChatRoom(result[i].id, result[i].name));
                 }
             });
         }
@@ -187,7 +187,23 @@
                     temp = user;
             });
             self.chatUsers.remove(temp);
-        
+        }
+
+        self.uploadFiles = function () {
+            var form = document.getElementById("uploadForm");
+            $.ajax({
+                type: "POST",
+                url: '/api/Upload',
+                data: new FormData(form),
+                contentType: false,
+                processData: false,
+                success: function () {
+                    $("#UploadedFile").val("");
+                },
+                error: function (error) {
+                    alert('Error: ' + error.responseText);
+                }
+            });
         }
     }
 

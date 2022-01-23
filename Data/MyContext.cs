@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WDPR.Models;
-
+using System.Reflection;
+using System.Text;
 namespace WDPR.Data {
     public class MyContext : IdentityDbContext<ApplicationUser>
     {
@@ -17,5 +18,14 @@ namespace WDPR.Data {
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<WDPR.Models.Hulpverlener> Hulpverlener { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Seed();
+
+            //builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
     }
 }

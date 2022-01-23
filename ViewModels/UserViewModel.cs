@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 
 namespace WDPR.ViewModels
 {
@@ -11,6 +10,7 @@ namespace WDPR.ViewModels
         public string Username { get; set; }
         public string FullName { get; set; }
         public string Avatar { get; set; }
+        public string GeboorteDatum {get; set;}
         public string CurrentRoom { get; set; }
         public string Device { get; set; }
     }

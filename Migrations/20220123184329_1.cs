@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WDPR.Migrations
 {
-    public partial class _2 : Migration
+    public partial class _1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,6 +26,8 @@ namespace WDPR.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
+                    FullName = table.Column<string>(type: "TEXT", nullable: true),
+                    Avatar = table.Column<string>(type: "TEXT", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -44,6 +46,29 @@ namespace WDPR.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Hulpverlener",
+                columns: table => new
+                {
+                    Hulpverlenerid = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    VoorNaam = table.Column<string>(type: "TEXT", nullable: true),
+                    achterNaam = table.Column<string>(type: "TEXT", nullable: true),
+                    Specialisme = table.Column<string>(type: "TEXT", nullable: true),
+                    Gebruikersnaam = table.Column<string>(type: "TEXT", nullable: true),
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
+                    Telefoonnummer = table.Column<string>(type: "TEXT", nullable: true),
+                    ProfielFoto = table.Column<string>(type: "TEXT", nullable: true),
+                    WiebenIk = table.Column<string>(type: "TEXT", nullable: true),
+                    MijnSTudie = table.Column<string>(type: "TEXT", nullable: true),
+                    WatAls = table.Column<string>(type: "TEXT", nullable: true),
+                    HoeHelpen = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Hulpverlener", x => x.Hulpverlenerid);
                 });
 
             migrationBuilder.CreateTable(
@@ -152,6 +177,57 @@ namespace WDPR.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Rooms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Naam = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    Specializatie = table.Column<string>(type: "TEXT", nullable: true),
+                    Leeftijdsgroep = table.Column<string>(type: "TEXT", nullable: true),
+                    Beschrijving = table.Column<string>(type: "TEXT", nullable: true),
+                    AdminId = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rooms", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Rooms_AspNetUsers_AdminId",
+                        column: x => x.AdminId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Messages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Content = table.Column<string>(type: "TEXT", maxLength: 500, nullable: false),
+                    Timestamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    FromUserId = table.Column<string>(type: "TEXT", nullable: true),
+                    ToRoomId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Messages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Messages_AspNetUsers_FromUserId",
+                        column: x => x.FromUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Messages_Rooms_ToRoomId",
+                        column: x => x.ToRoomId,
+                        principalTable: "Rooms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -188,6 +264,21 @@ namespace WDPR.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Messages_FromUserId",
+                table: "Messages",
+                column: "FromUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Messages_ToRoomId",
+                table: "Messages",
+                column: "ToRoomId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rooms_AdminId",
+                table: "Rooms",
+                column: "AdminId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -208,7 +299,16 @@ namespace WDPR.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Hulpverlener");
+
+            migrationBuilder.DropTable(
+                name: "Messages");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Rooms");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

@@ -33,13 +33,20 @@ namespace WDPR
             services.AddRazorPages();
             services.AddSignalR();
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
-            // services.AddDefaultIdentity<IdentityUser>()
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+            
+            //services.AddDefaultIdentity<ApplicationUser>()
             .AddEntityFrameworkStores<MyContext>()
             .AddDefaultTokenProviders()
             .AddDefaultUI();
+            services.AddMvc();
+
             services.AddDbContext<MyContext>(options =>
                     options.UseSqlite(Configuration.GetConnectionString("MyContext")));
+            services.AddRazorPages();
+            services.AddControllers();
+        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,11 +69,12 @@ namespace WDPR
         app.UseAuthentication();
             app.UseAuthorization();
 
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
                 endpoints.MapHub<ChatHub>("/chatHub");
-
+                endpoints.MapControllers();
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

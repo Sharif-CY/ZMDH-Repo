@@ -12,13 +12,14 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
+
 namespace WDPR.Hubs
 {
     [Authorize]
     public class ChatHub : Hub
     {
         public readonly static List<UserViewModel> _Connections = new List<UserViewModel>();
-        public readonly static List<ZelfHulpGroepViewModel> _Rooms = new List<ZelfHulpGroepViewModel>();
+        public readonly static List<RoomViewModel> _Rooms = new List<RoomViewModel>();
         private readonly static Dictionary<string, string> _ConnectionsMap = new Dictionary<string, string>();
 
         private readonly MyContext _context;
@@ -30,7 +31,7 @@ namespace WDPR.Hubs
             _mapper = mapper;
         }
 
-         public async Task SendPrivate(string receiverName, string message)
+        public async Task SendPrivate(string receiverName, string message)
         {
             if (_ConnectionsMap.TryGetValue(receiverName, out string userId))
             {
@@ -56,12 +57,12 @@ namespace WDPR.Hubs
             }
         }
 
-         public async Task SendToRoom(string roomName, string message)
+        public async Task SendToRoom(string roomName, string message)
         {
             try
             {
                 var user = _context.Users.Where(u => u.UserName == IdentityName).FirstOrDefault();
-                var room = _context.Rooms.Where(r => r.Naam == roomName).FirstOrDefault();
+                var room = _context.Rooms.Where(r => r.Name == roomName).FirstOrDefault();
 
                 if (!string.IsNullOrEmpty(message.Trim()))
                 {
@@ -85,7 +86,7 @@ namespace WDPR.Hubs
             {
                 await Clients.Caller.SendAsync("onError", "Message not send! Message should be 1-500 characters.");
             }
-        } 
+        }
 
         public async Task Join(string roomName)
         {
@@ -118,7 +119,7 @@ namespace WDPR.Hubs
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, roomName);
         }
 
-         public async Task CreateRoom(string roomName)
+        public async Task CreateRoom(string roomName)
         {
             try
             {
@@ -133,7 +134,7 @@ namespace WDPR.Hubs
                 {
                     await Clients.Caller.SendAsync("onError", "Room name must be between 5-100 characters!");
                 }
-                else if (_context.Rooms.Any(r => r.Naam == roomName))
+                else if (_context.Rooms.Any(r => r.Name == roomName))
                 {
                     await Clients.Caller.SendAsync("onError", "Another chat room with this name exists");
                 }
@@ -143,9 +144,8 @@ namespace WDPR.Hubs
                     var user = _context.Users.Where(u => u.UserName == IdentityName).FirstOrDefault();
                     var room = new Room()
                     {
-                        Naam = roomName,
+                        Name = roomName,
                         Admin = user
-                        
                     };
                     _context.Rooms.Add(room);
                     _context.SaveChanges();
@@ -153,7 +153,7 @@ namespace WDPR.Hubs
                     if (room != null)
                     {
                         // Update room list
-                        var roomViewModel = _mapper.Map<Room, ZelfHulpGroepViewModel>(room);
+                        var roomViewModel = _mapper.Map<Room, RoomViewModel>(room);
                         _Rooms.Add(roomViewModel);
                         await Clients.All.SendAsync("addChatRoom", roomViewModel);
                     }
@@ -163,7 +163,7 @@ namespace WDPR.Hubs
             {
                 await Clients.Caller.SendAsync("onError", "Couldn't create chat room: " + ex.Message);
             }
-        } 
+        }
 
         public async Task DeleteRoom(string roomName)
         {
@@ -171,12 +171,12 @@ namespace WDPR.Hubs
             {
                 // Delete from database
                 var room = _context.Rooms.Include(r => r.Admin)
-                    .Where(r => r.Naam == roomName && r.Admin.UserName == IdentityName).FirstOrDefault();
+                    .Where(r => r.Name == roomName && r.Admin.UserName == IdentityName).FirstOrDefault();
                 _context.Rooms.Remove(room);
                 _context.SaveChanges();
 
                 // Delete from list
-                var roomViewModel = _Rooms.First(r => r.Naam == roomName);
+                var roomViewModel = _Rooms.First(r => r.Name == roomName);
                 _Rooms.Remove(roomViewModel);
 
                 // Move users back to Lobby
@@ -191,14 +191,14 @@ namespace WDPR.Hubs
             }
         }
 
-        public IEnumerable<ZelfHulpGroepViewModel> GetRooms()
+        public IEnumerable<RoomViewModel> GetRooms()
         {
             // First run?
             if (_Rooms.Count == 0)
             {
                 foreach (var room in _context.Rooms)
                 {
-                    var roomViewModel = _mapper.Map<Room, ZelfHulpGroepViewModel>(room);
+                    var roomViewModel = _mapper.Map<Room, RoomViewModel>(room);
                     _Rooms.Add(roomViewModel);
                 }
             }
@@ -213,7 +213,7 @@ namespace WDPR.Hubs
 
         public IEnumerable<MessageViewModel> GetMessageHistory(string roomName)
         {
-            var messageHistory = _context.Messages.Where(m => m.ToRoom.Naam == roomName)
+            var messageHistory = _context.Messages.Where(m => m.ToRoom.Name == roomName)
                     .Include(m => m.FromUser)
                     .Include(m => m.ToRoom)
                     .OrderByDescending(m => m.Timestamp)
@@ -225,12 +225,12 @@ namespace WDPR.Hubs
             return _mapper.Map<IEnumerable<Message>, IEnumerable<MessageViewModel>>(messageHistory);
         }
 
-         public override Task OnConnectedAsync()
+        public override Task OnConnectedAsync()
         {
             try
             {
                 var user = _context.Users.Where(u => u.UserName == IdentityName).FirstOrDefault();
-                var userViewModel = _mapper.Map<IdentityUser, UserViewModel>(user);
+                var userViewModel = _mapper.Map<ApplicationUser, UserViewModel>(user);
                 userViewModel.Device = GetDevice();
                 userViewModel.CurrentRoom = "";
 
@@ -240,7 +240,7 @@ namespace WDPR.Hubs
                     _ConnectionsMap.Add(IdentityName, Context.ConnectionId);
                 }
 
-                Clients.Caller.SendAsync("getProfileInfo");
+                Clients.Caller.SendAsync("getProfileInfo", user.FullName, user.Avatar);
             }
             catch (Exception ex)
             {

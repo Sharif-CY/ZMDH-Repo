@@ -14,7 +14,17 @@
         input.focus();
     });
 
+    $('#emojis-container').on('click', 'a', function () {
+        var value = $("input", $(this)).val();
+        var input = $('#chat-message');
+        input.val(input.val() + value);
+        input.focus();
+        input.change();
+    });
 
+    $("#emojibtn").click(function () {
+        $("#emojis-container").toggleClass("d-none");
+    });
 
     $("#chat-message, #btn-send-message").click(function () {
         $("#emojis-container").addClass("d-none")

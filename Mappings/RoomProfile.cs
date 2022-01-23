@@ -12,8 +12,8 @@ namespace WDPR.Mappings
     {
         public RoomProfile()
         {
-            CreateMap<Room, ZelfHulpGroepViewModel>();
-            CreateMap<ZelfHulpGroepViewModel, Room>();
+            CreateMap<Room, RoomViewModel>();
+            CreateMap<RoomViewModel, Room>();
         }
     }
 }

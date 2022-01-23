@@ -17,18 +17,22 @@ using Microsoft.Extensions.Configuration;
 
 namespace WDPR.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ChatController : ControllerBase
+    public class ChatController : Controller
     {
-        private readonly int FileSizeLimit;
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+    }
+    /*     private readonly int FileSizeLimit;
         private readonly string[] AllowedExtensions;
         private readonly MyContext _context;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _environment;
         private readonly IHubContext<ChatHub> _hubContext;
-
-        public ChatController(MyContext context,
+        
+                public ChatController(MyContext context,
             IMapper mapper,
             IWebHostEnvironment environment,
             IHubContext<ChatHub> hubContext,
@@ -39,12 +43,13 @@ namespace WDPR.Controllers
             _environment = environment;
             _hubContext = hubContext;
 
+            
+
             FileSizeLimit = configruation.GetSection("FileUpload").GetValue<int>("FileSizeLimit");
             AllowedExtensions = configruation.GetSection("FileUpload").GetValue<string>("AllowedExtensions").Split(",");
         }
 
-        
-
+ 
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Upload([FromForm] UploadViewModel uploadViewModel)
@@ -97,7 +102,7 @@ namespace WDPR.Controllers
 
             return BadRequest();
         }
-
+   
         private bool Validate(IFormFile file)
         {
             if (file.Length > FileSizeLimit)
@@ -109,5 +114,7 @@ namespace WDPR.Controllers
 
             return true;
         }
-    }
+    } 
+} */
 }
+

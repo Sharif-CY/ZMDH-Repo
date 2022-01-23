@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using WDPR.Helpers;
 using WDPR.Models;
 using WDPR.ViewModels;
 using System;
@@ -14,7 +15,7 @@ namespace WDPR.Mappings
         {
             CreateMap<Message, MessageViewModel>()
                 .ForMember(dst => dst.From, opt => opt.MapFrom(x => x.FromUser.FullName))
-                .ForMember(dst => dst.To, opt => opt.MapFrom(x => x.ToRoom.Naam))
+                .ForMember(dst => dst.To, opt => opt.MapFrom(x => x.ToRoom.Name))
                 .ForMember(dst => dst.Avatar, opt => opt.MapFrom(x => x.FromUser.Avatar))
                 .ForMember(dst => dst.Timestamp, opt => opt.MapFrom(x => x.Timestamp));
             CreateMap<MessageViewModel, Message>();

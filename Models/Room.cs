@@ -8,13 +8,7 @@ namespace WDPR.Models
     public class Room
     {
         public int Id { get; set; }
-        public string Naam { get; set; }
-
-        public string Specializatie {get; set;}
-
-        public string Leeftijdsgroep {get; set;}
-
-        public string Beschrijving {get; set;}
+        public string Name { get; set; }
         public ApplicationUser Admin { get; set; }
         public ICollection<Message> Messages { get; set; }
     }
