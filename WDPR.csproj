@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0" />
     <PackageReference Include="microsoft.entityframeworkcore.design" Version="5.0">

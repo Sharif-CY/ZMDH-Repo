@@ -10,6 +10,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using AutoMapper;
+using WDPR.Data;
+using WDPR.Hubs;
+using WDPR.Models;
 
 namespace WDPR
 {
@@ -27,6 +31,8 @@ namespace WDPR
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddSignalR();
+
             services.AddIdentity<IdentityUser, IdentityRole>()
             // services.AddDefaultIdentity<IdentityUser>()
             .AddEntityFrameworkStores<MyContext>()
@@ -59,6 +65,8 @@ namespace WDPR
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapHub<ChatHub>("/chatHub");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

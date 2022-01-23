@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WDPR.Models;
 using Microsoft.AspNetCore.Authorization;
-
+using WDPR.Data;
 
 namespace WDPR.Controllers
 {

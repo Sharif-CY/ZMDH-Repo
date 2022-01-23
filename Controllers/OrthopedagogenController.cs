@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WDPR.Models;
+using WDPR.Data;
 
 namespace WDPR.Controllers
 {
