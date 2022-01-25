@@ -24,6 +24,46 @@
                 <span asp-validation-for="Input.Role" class="text-danger"></span>
             </div>
 
+            @if(User.IsInRole("Moderator")){
+                <div class="form-group">
+                <label asp-for="Input.wiebenik"></label>
+                <input asp-for="Input.wiebenik" class="form-control" />
+                <span asp-validation-for="Input.wiebenik" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.voornaam"></label>
+                <input asp-for="Input.voornaam" class="form-control" />
+                <span asp-validation-for="Input.voornaam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.achternaam"></label>
+                <input asp-for="Input.achternaam" class="form-control" />
+                <span asp-validation-for="Input.achternaam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.specialisme"></label>
+                <input asp-for="Input.specialisme" class="form-control" />
+                <span asp-validation-for="Input.specialisme" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.mijnstudie"></label>
+                <input asp-for="Input.mijnstudie" class="form-control" />
+                <span asp-validation-for="Input.mijnstudie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.watals"></label>
+                <input asp-for="Input.watals" class="form-control" />
+                <span asp-validation-for="Input.watals" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.hoehelpen"></label>
+                <input asp-for="Input.hoehelpen" class="form-control" />
+                <span asp-validation-for="Input.hoehelpen" class="text-danger"></span>
+            </div>
+
+            }
+
             @* Voornaam invoeren
             <div class="form-group">
                 <label asp-for="Input.Email"></label>

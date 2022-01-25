@@ -32,6 +32,12 @@
                     <li><a class="ortho-link" asp-controller="Orthopedagogen" asp-action="Index">Orthopedagogen</a></li>
                     <li><a class="klacht-link" asp-controller="KlachtenProcedure" asp-action="Index">Klachten-procedure</a></li>
                     <li><a class="aanmelden-link" asp-controller="Aanmelden" asp-action="Index">Aanmelden</a></li>
+                    @if(User.IsInRole("Hulpverlener")){
+                    <li><a class="aanmelden-link" asp-controller="Hulpverlener" asp-action="dashboard">dashboard</a></li>
+                    }
+                    @if(User.IsInRole("Moderator")){
+                    <li><a class="aanmelden-link" asp-controller="Moderator" asp-action="dashboard">dashboard</a></li>
+                    }
                     <partial name="_LoginPartial"/>
                 </ul>
                 
