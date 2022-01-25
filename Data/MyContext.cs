@@ -14,4 +14,8 @@ using WDPR.Models;
         }
 
         public DbSet<WDPR.Models.Hulpverlener> Hulpverlener { get; set; }
+
+        public DbSet<WDPR.Models.Client> Client { get; set; }
+
+        public DbSet<WDPR.Models.Ouder> Ouder { get; set; }
     }
