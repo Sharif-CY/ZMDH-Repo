@@ -94,6 +94,7 @@ namespace WDPR.Areas.Identity.Pages.Account
                         // Resolve the user via their email
                         var user = await _userManager.FindByEmailAsync(Input.Email);
                         // Get the roles for the user
+                        // Bij het veranderen van mail moeten de Normalized email en Normalized naam gelijk zijn
                         var roles = await _userManager.GetRolesAsync(user);
 
 
