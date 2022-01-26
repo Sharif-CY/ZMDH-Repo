@@ -24,7 +24,7 @@ namespace WDPR.Controllers
             return View();
         }
 
-        public IActionResult Succes()
+        public IActionResult gelukt()
         {
             return View();
         }

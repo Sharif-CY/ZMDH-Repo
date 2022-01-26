@@ -114,7 +114,7 @@ namespace WDPR.Areas.Identity.Pages.Account
                 
                 if (result.Succeeded)
                  {
-                     return RedirectToAction("Index");
+                     return RedirectToAction("gelukt");
                 //     _logger.LogInformation("User created a new account with password.");
 
                 //     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -156,7 +156,7 @@ namespace WDPR.Areas.Identity.Pages.Account
                 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("gelukt");
                 //     _logger.LogInformation("User created a new account with password.");
 
                 //     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -197,7 +197,7 @@ namespace WDPR.Areas.Identity.Pages.Account
                 
                  if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("gelukt");
                 //     _logger.LogInformation("User created a new account with password.");
 
                 //     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -238,7 +238,7 @@ namespace WDPR.Areas.Identity.Pages.Account
                 
                  if (result.Succeeded)
                  {
-                     return RedirectToAction("Index");
+                     return RedirectToAction("gelukt");
                 //     _logger.LogInformation("User created a new account with password.");
 
                 //     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

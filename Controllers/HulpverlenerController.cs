@@ -26,7 +26,9 @@ namespace WDPR.Controllers
             return View();
         }
 
+
         // GET: Hulpverlener
+        [Authorize(Roles = "Moderator")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Hulpverlener.ToListAsync());
@@ -51,6 +53,7 @@ namespace WDPR.Controllers
         }
 
         // GET: Hulpverlener/Create
+        [Authorize(Roles = "Moderator")]
         public IActionResult Create()
         {
             return View();
